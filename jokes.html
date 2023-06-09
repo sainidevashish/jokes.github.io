@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokes</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #2980b9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: 0;
+            margin: 0;
+            padding: 20px; 
+        }
+        .container{
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 50px 20px;
+            text-align: center;
+            max-width: 100%;
+            width: 800px;
+        }
+        h3{
+            margin: 0;
+            color: rgb(148,141,141);
+            letter-spacing: 2px;
+            text-transform: capitalize;
+        }
+        .Jokes{
+            font-size: 30px;
+            letter-spacing: 1px;
+            line-height: 40px;
+            margin: 50px auto;
+            max-width: 600px;
+
+        }
+        .btn{
+            background-color: yellow;
+            color: black;
+            border: 0;
+            border-radius: 10px;
+            padding: 12px 30px ;
+            font-size: 18px;
+            cursor: pointer;
+            outline: none;
+            font-weight: 500;
+        }
+        .btn:hover {
+            background-color: chocolate;
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- dad Jokes  GET https://icanhazdadjoke.com/ -->
+
+    <div class="container">
+        <h3>Best Jokes to make your day</h3>
+        <div id="Jokes", class="Jokes"> Awsome jokes is loading ....</div>
+        <button id="JokesBtn" class="btn">Next Jock</button>
+    </div>
+
+
+    <script>
+    const Jokes = document.querySelector('#Jokes');
+    const JokesBtn = document.querySelector('#JokesBtn');
+
+    const setHeaders = {
+        headers: {
+            Accept : "application/json"
+        }
+    }
+
+    const genjock = () => {
+        fetch('https://icanhazdadjoke.com/', setHeaders)
+        .then ((res) => res.json() )
+        .then ( (data) =>{
+            Jokes.innerHTML = data.joke;
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+
+
+    // try {
+    //     const async genjock = ()=>{
+        
+    // } catch (error) {
+    //     console.log(err);
+    // }    
+    
+
+
+
+    JokesBtn.addEventListener('click',genjock);
+    genjock();
+
+
+
+    </script>
+
+
+    
+</body>
+</html>
